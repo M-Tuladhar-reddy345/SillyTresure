@@ -24,6 +24,7 @@ class Playerclass(object):
 
 	def update(self, index, objects):
 		self.keys = pygame.key.get_pressed()
+		map = False
 		#movement
 		#move down
 		if self.keys[pygame.K_DOWN]:
@@ -71,8 +72,11 @@ class Playerclass(object):
 				self.x += 8
 			for i in objects:
 				if pygame.Rect.colliderect(pygame.Rect(self.x, self.y, self.width*2, self.height*2), pygame.Rect(i.x, i.y, i.newwidth, i.newheight)):
+					if i.objectname =='sb2':
+						map = True
+
 					self.x -= 8
-					continue
+
 
 
 
@@ -123,5 +127,9 @@ class Playerclass(object):
 
 
 		self.screen.blit(self.image, (self.x, self.y))
+
+		if map == True:
+			ob.tresuremap4.update(self.screen)
+		
 
 
